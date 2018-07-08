@@ -50,15 +50,15 @@
                     <Counter
                         counter={counter}
                         key={counter.id}
-						countUp = {props.countUp}
+                        countUp={props.countUp}
                     />
                 );
             });
             return (
                 <ul>
-					{counters}
+                    {counters}
                 </ul>
-			);
+            );
         }
 
         class App extends React.Component {
@@ -71,15 +71,31 @@
                         {id: 'C', count: 0, color: 'limegreen'}
                     ]
                 };
+                this.countUp = this.countUp.bind(this);
+            }
+
+            countUp(counter) {
+                this.setState(prevState => {
+                    const counters = prevState.counters.map(counter => {
+                        return {id: counter.id, count: counter.count, color: counter.color};
+                    });
+                    const pos = counters.map(counter => {
+                        return counter.id;
+					}).indexOf(counter.id);
+                    counters[pos].count++;
+                    return {
+                        counters: counters
+					};
+                });
             }
 
             render() {
                 return (
                     <div className="container">
-						<CounterList
-							counters={this.state.counters}
-							countUp={this.countUp}
-						/>
+                        <CounterList
+                            counters={this.state.counters}
+                            countUp={this.countUp}
+                        />
                         <div>total : 0</div>
                     </div>
                 );

@@ -34,14 +34,30 @@
 <script type="text/babel">
     (() => {
 
-		function Counter(props) {
-		    return (
-		        <li style={{backgroundColor:props.counter.color}}>
-					{props.counter.id}:{props.counter.count}
+        function Counter(props) {
+            return (
+                <li style={{backgroundColor: props.counter.color}}>
+                    {props.counter.id}:{props.counter.count}
 
-				</li>
-			)
+                </li>
+            )
 
+        }
+
+        function CounterList(props) {
+            const counters = props.counters.map(counter => {
+                return (
+                    <Counter
+                        counter={counter}
+                        key={counter.id}
+                    />
+                );
+            });
+            return (
+                <ul>
+					{counters}
+                </ul>
+			);
         }
 
         class App extends React.Component {
@@ -55,18 +71,15 @@
                     ]
                 };
             }
+
             render() {
                 return (
                     <div className="container">
-						<ul>
-							<Counter counter={this.state.counters[0]}/>
-                            <Counter counter={this.state.counters[1]}/>
-                            <Counter counter={this.state.counters[2]}/>
-						</ul>
-						<div>total : 0</div>
-					</div>
-				);
-			}
+						<CounterList counters={this.state.counters}/>
+                        <div>total : 0</div>
+                    </div>
+                );
+            }
         }
 
         ReactDOM.render(

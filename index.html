@@ -7,11 +7,25 @@
 	<script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
 	<script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
 	<style>
-		.box {
-			width: 100px;
-			height: 100px;
-			background-color: red;
+		ul {
+			margin: 0 auto;
+			padding: 0;
+			width: 500px;
+			display: flex;
+			flex-wrap: wrap;
+
 		}
+
+		li {
+			list-style: none;
+			margin: 0;
+			padding: 0;
+			width: 150px;
+			height: 150px;
+			text-align: center;
+			cursor: pointer;
+		}
+
 	</style>
 </head>
 
@@ -19,19 +33,32 @@
 <div id="root"></div>
 <script type="text/babel">
     (() => {
-        function Counter(props) {
-            function countUp(e,color) {
-                e.preventDefault();
-                alert(color);
+        // function Counter(props) {
+        //     function countUp(e, color) {
+        //         e.preventDefault();
+        //         alert(color);
+        //     }
+		//
+        //     return (
+        //         <li style={{backgroundColor: props.color}}>
+        //             <a href="#" onClick={e => countUp(e, props.color)}>
+        //                 0
+        //             </a>
+        //         </li>
+        //     );
+		//
+		//
+        // }
+        class Counter extends React.Component {
+            render() {
+                return (
+                    <li style={{backgroundColor:this.props.color}}>
+                        <a href="#" onClick={ e => countUp(e, props.color)}>
+                            0
+                        </a>
+                    </li>
+                );
             }
-            return (
-                <li style={{backgroundColor: props.color}}>
-                    <a href="#" onClick={ e => countUp(e, props.color)}>
-						0
-					</a>
-                </li>
-            );
-
         }
 
         ReactDOM.render(

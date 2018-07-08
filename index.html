@@ -36,7 +36,7 @@
 
         function Counter(props) {
             return (
-                <li style={{backgroundColor: props.counter.color}}>
+                <li style={{backgroundColor: props.counter.color}} onClick={() => props.countUp(props.counter)}>
                     {props.counter.id}:{props.counter.count}
 
                 </li>
@@ -50,6 +50,7 @@
                     <Counter
                         counter={counter}
                         key={counter.id}
+						countUp = {props.countUp}
                     />
                 );
             });
@@ -75,7 +76,10 @@
             render() {
                 return (
                     <div className="container">
-						<CounterList counters={this.state.counters}/>
+						<CounterList
+							counters={this.state.counters}
+							countUp={this.countUp}
+						/>
                         <div>total : 0</div>
                     </div>
                 );
